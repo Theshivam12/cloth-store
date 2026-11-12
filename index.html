@@ -1,240 +1,1433 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>सार्थक क्रिएशन | Men's Fashion</title>
-    <link rel="stylesheet" href="style.css">
+    <title>HI FI Ladies Store | Inclusive Fashion & Big Size Women's Wear</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans / Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Intro Screen -->
-    <div class="intro-screen" id="intro">
-        <div class="intro-content">
-            <span class="intro-line"></span>
-            <h1>सार्थक क्रिएशन</h1>
-            <p>STYLE THAT DEFINES YOU</p>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#b35ca9',
+                            secondary: '#d59cc5',
+                            bg: '#eadada',
+                            dark: '#2b1b29',
+                            muted: '#5e455b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Theme & Keyframe Animations */
+        :root {
+            --primary: #b35ca9;
+            --secondary: #d59cc5;
+            --bg-cream: #eadada;
+            --dark-plum: #2d182b;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-cream);
+            color: var(--dark-plum);
+        }
+
+        /* Fluid Responsive Typography */
+        .hero-heading {
+            font-size: clamp(2.15rem, 6vw, 4.5rem);
+            line-height: 1.12;
+        }
+
+        .section-heading {
+            font-size: clamp(1.85rem, 4.5vw, 3.15rem);
+            line-height: 1.18;
+        }
+
+        /* Splash Screen Preloader Styles & Animations */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: radial-gradient(circle at top right, #d59cc5 0%, #b35ca9 48%, #2d182b 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.85s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.85s ease, transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.04);
+            pointer-events: none;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.92); opacity: 0.7; }
+            50% { transform: scale(1.08); opacity: 0.25; }
+            100% { transform: scale(0.92); opacity: 0.7; }
+        }
+
+        @keyframes shimmerText {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes slideUpReveal {
+            0% { opacity: 0; transform: translateY(28px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .splash-ring {
+            animation: pulseRing 2.6s infinite ease-in-out;
+        }
+
+        .splash-title {
+            background: linear-gradient(90deg, #ffffff 0%, #eadada 45%, #ffffff 55%, #d59cc5 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 3s linear infinite, slideUpReveal 0.9s ease-out forwards;
+        }
+
+        .splash-subtitle {
+            animation: slideUpReveal 0.9s ease-out 0.25s both;
+        }
+
+        .splash-progress-bar {
+            animation: progressFill 2.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Floating Decorative Shapes */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2.5deg); }
+        }
+
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: floatSlow 6.5s ease-in-out 1.5s infinite;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-28px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(28px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Interactive Collection Card Lift & Hover */
+        .collection-card {
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+        }
+
+        @media (hover: hover) {
+            .collection-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 22px 40px -12px rgba(179, 92, 169, 0.32);
+            }
+            .collection-card:hover img {
+                transform: scale(1.07);
+            }
+        }
+
+        .collection-card img {
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Glassmorphism Header & Scrolled State */
+        .glass-header {
+            background: rgba(234, 218, 218, 0.86);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(179, 92, 169, 0.22);
+        }
+
+        .glass-header.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 10px 30px -10px rgba(45, 24, 43, 0.16);
+        }
+
+        /* Morphing Hamburger Icon */
+        .hamburger-line {
+            display: block;
+            width: 22px;
+            height: 2.5px;
+            background-color: #2d182b;
+            border-radius: 999px;
+            transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.25s ease, background-color 0.25s ease;
+        }
+
+        .menu-open .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+            background-color: #ffffff;
+        }
+
+        .menu-open .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .menu-open .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+            background-color: #ffffff;
+        }
+
+        /* Slide-Out Mobile Drawer */
+        #mobile-drawer {
+            transform: translateX(100%);
+            transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #mobile-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-link {
+            opacity: 0;
+            transform: translateX(22px);
+            transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease;
+        }
+
+        #mobile-drawer.open .drawer-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        #mobile-drawer.open .drawer-link:nth-child(1) { transition-delay: 0.08s; }
+        #mobile-drawer.open .drawer-link:nth-child(2) { transition-delay: 0.14s; }
+        #mobile-drawer.open .drawer-link:nth-child(3) { transition-delay: 0.20s; }
+        #mobile-drawer.open .drawer-link:nth-child(4) { transition-delay: 0.26s; }
+        #mobile-drawer.open .drawer-link:nth-child(5) { transition-delay: 0.32s; }
+
+        /* Horizontal Scrollbar Hide for Mobile Filter Pills */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eadada;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b35ca9;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #96448d;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#b35ca9] selection:text-white">
+
+    <!-- ===================================================================== -->
+    <!-- 1. FULL-SCREEN ANIMATED SPLASH SCREEN / PRELOADER                     -->
+    <!-- ===================================================================== -->
+    <div id="splash-screen" aria-label="Welcome to HI FI Ladies Store">
+        <div class="absolute w-64 h-64 sm:w-96 sm:h-96 rounded-full border border-white/20 splash-ring pointer-events-none"></div>
+        <div class="absolute w-48 h-48 sm:w-72 sm:h-72 rounded-full bg-[#d59cc5]/25 blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 text-center px-6 max-w-xl">
+            <!-- Custom SVG Boutique Crest -->
+            <div class="mx-auto mb-5 w-20 h-20 rounded-3xl bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl">
+                <svg class="w-11 h-11 text-[#eadada]" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 22L22 30L32 18L42 30L50 22L46 42H18L14 22Z" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 48H46" stroke="#d59cc5" stroke-width="3.2" stroke-linecap="round"/>
+                    <circle cx="32" cy="12" r="2.5" fill="#eadada"/>
+                </svg>
+            </div>
+
+            <h1 class="splash-title font-serif text-4xl sm:text-6xl font-extrabold tracking-wide mb-3 drop-shadow-md">
+                HI FI Ladies Store
+            </h1>
+
+            <p class="splash-subtitle text-[#eadada] text-xs sm:text-base tracking-[0.2em] uppercase font-semibold mb-8">
+                Where Every Curve Shines • Sizes M to 6XL
+            </p>
+
+            <div class="w-52 sm:w-72 h-1.5 bg-white/20 rounded-full mx-auto overflow-hidden mb-6">
+                <div class="splash-progress-bar h-full bg-gradient-to-r from-[#eadada] via-white to-[#d59cc5] rounded-full"></div>
+            </div>
+
+            <button id="skip-splash-btn" class="px-6 py-2.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/35 text-xs uppercase tracking-widest text-white font-semibold transition cursor-pointer">
+                Enter Boutique <i class="fa-solid fa-arrow-right ml-1.5"></i>
+            </button>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <a href="#home" class="logo">सार्थक <span>क्रिएशन</span></a>
+    <!-- ===================================================================== -->
+    <!-- 2. ATTRACTIVE RESPONSIVE HEADER (TOP BAR + GLASS NAVBAR + DRAWER)     -->
+    <!-- ===================================================================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-header transition-all duration-300">
+        <!-- Top Announcement Micro-Bar -->
+        <div class="bg-gradient-to-r from-[#2d182b] via-[#b35ca9] to-[#2d182b] text-white text-[11px] sm:text-xs font-medium py-1.5 px-3 text-center tracking-wide">
+            <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+                <span class="truncate">✨ Exclusive Big-Size Collection (M – 6XL) • New Festive Arrivals In-Store ✨</span>
+            </div>
+        </div>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-            ☰
-        </button>
+        <!-- Main Navigation Bar -->
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                
+                <!-- Custom SVG Boutique Logo Mark + Brand Typography -->
+                <a href="#home" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#b35ca9] via-[#9e4794] to-[#2d182b] flex items-center justify-center text-white shadow-lg border border-white/30 flex-shrink-0 group-hover:scale-105 group-hover:rotate-3 transition-all duration-300">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 23L22 31L32 19L42 31L50 23L46 43H18L14 23Z" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 49H44" stroke="#d59cc5" stroke-width="3.5" stroke-linecap="round"/>
+                            <circle cx="32" cy="13" r="3" fill="#eadada"/>
+                        </svg>
+                    </div>
+                    <div class="truncate">
+                        <span class="block font-serif text-lg sm:text-2xl font-extrabold text-[#2d182b] leading-none tracking-tight">
+                            HI FI <span class="text-[#b35ca9]">Ladies Store</span>
+                        </span>
+                        <span class="block text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-[#5e455b] font-bold mt-1">
+                            Regular & Big Size (M–6XL)
+                        </span>
+                    </div>
+                </a>
 
-        <nav class="nav" id="navigation">
-            <a href="#home">Home</a>
-            <a href="#collections">Collections</a>
-            <a href="#about">About Us</a>
-            <a href="#contact" class="nav-button">Visit Our Store</a>
-        </nav>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-7">
+                    <a href="#home" class="text-sm font-semibold text-[#2d182b] hover:text-[#b35ca9] transition relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#b35ca9] hover:after:w-full after:transition-all">Home</a>
+                    <a href="#about" class="text-sm font-semibold text-[#2d182b] hover:text-[#b35ca9] transition relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#b35ca9] hover:after:w-full after:transition-all">About & Sizes</a>
+                    <a href="#collection" class="text-sm font-semibold text-[#2d182b] hover:text-[#b35ca9] transition relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#b35ca9] hover:after:w-full after:transition-all">Collections</a>
+                    <a href="#why-us" class="text-sm font-semibold text-[#2d182b] hover:text-[#b35ca9] transition relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#b35ca9] hover:after:w-full after:transition-all">Why Us</a>
+                </nav>
+
+                <!-- Desktop & Mobile Action Controls -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Quick Size Guide Pill (Visible on Mobile & Desktop) -->
+                    <!-- <a href="#size-guide-box" class="inline-flex items-center gap-1.5 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full bg-white/90 hover:bg-[#d59cc5]/40 text-[#2d182b] border border-[#b35ca9]/35 text-xs font-bold shadow-sm transition active:scale-95">
+                        <i class="fa-solid fa-ruler text-[#b35ca9]"></i>
+                        <span>M–6XL</span>
+                    </a> -->
+
+                    <!-- Desktop Visit Store CTA -->
+                    <a href="#contact" class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#b35ca9] to-[#98448f] hover:from-[#98448f] hover:to-[#2d182b] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Visit Store</span>
+                    </a>
+
+                    <!-- Mobile Morphing Hamburger Button -->
+                    <button id="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" class="lg:hidden relative z-50 w-11 h-11 rounded-2xl bg-[#d59cc5]/45 hover:bg-[#b35ca9]/20 border border-[#b35ca9]/30 flex flex-col items-center justify-center gap-[4.5px] transition-colors cursor-pointer">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-content reveal">
-                <span class="eyebrow">MEN'S FASHION COLLECTION</span>
-                <h1>Dress Sharp.<br><span>Look Confident.</span></h1>
-                <p>
-                    Discover timeless styles, premium everyday essentials,
-                    and modern outfits designed for every occasion.
-                </p>
+    <!-- Backdrop Overlay for Mobile Drawer -->
+    <div id="drawer-backdrop" class="fixed inset-0 z-40 bg-[#2d182b]/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300 lg:hidden"></div>
 
-                <div class="hero-buttons">
-                    <a href="#collections" class="btn btn-primary">Explore Collection ↗</a>
-                    <a href="#about" class="btn btn-outline">Discover Our Style</a>
+    <!-- Full-Height Slide-Out Mobile Navigation Drawer -->
+    <aside id="mobile-drawer" aria-label="Mobile Navigation" class="fixed top-0 right-0 bottom-0 z-40 w-[84%] max-w-sm bg-gradient-to-b from-[#eadada] via-[#f3e8e8] to-[#e5cfcf] shadow-2xl border-l border-[#b35ca9]/30 flex flex-col justify-between pt-28 pb-7 px-6 lg:hidden overflow-y-auto">
+        <div>
+            <!-- Drawer Header Tag -->
+            <div class="mb-5 pb-4 border-b border-[#b35ca9]/20">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#b35ca9]/15 text-[#b35ca9] text-[11px] font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-sparkles"></i> Inclusive Fashion Boutique
+                </span>
+                <p class="font-serif text-xl font-bold text-[#2d182b] mt-2">Explore HI FI Ladies Store</p>
+            </div>
+
+            <!-- Staggered Navigation Links -->
+            <nav class="space-y-2">
+                <a href="#home" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/75 hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-bold text-base shadow-xs transition group">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-house text-[#b35ca9] group-hover:text-white w-5 text-center"></i>
+                        Home
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+
+                <a href="#about" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/75 hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-bold text-base shadow-xs transition group">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-heart text-[#b35ca9] group-hover:text-white w-5 text-center"></i>
+                        About & Big Sizes
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+
+                <a href="#collection" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/75 hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-bold text-base shadow-xs transition group">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-shirt text-[#b35ca9] group-hover:text-white w-5 text-center"></i>
+                        Collections
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+
+                <a href="#why-us" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/75 hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-bold text-base shadow-xs transition group">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-star text-[#b35ca9] group-hover:text-white w-5 text-center"></i>
+                        Why Choose Us
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+
+                <a href="#contact" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl bg-white/75 hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-bold text-base shadow-xs transition group">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-location-dot text-[#b35ca9] group-hover:text-white w-5 text-center"></i>
+                        Visit Store
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Size Availability Badges Inside Drawer -->
+            <div class="mt-6 p-4 rounded-2xl bg-white/80 border border-[#d59cc5]">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-[#5e455b] mb-2.5">
+                    Ready-to-Wear Sizes In Stock:
+                </p>
+                <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2.5 py-1 rounded-lg bg-[#eadada] text-[#2d182b] text-xs font-bold">M</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#eadada] text-[#2d182b] text-xs font-bold">L</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#d59cc5]/60 text-[#2d182b] text-xs font-bold">XL</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#d59cc5]/60 text-[#2d182b] text-xs font-bold">2XL</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#b35ca9] text-white text-xs font-bold">3XL</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#b35ca9] text-white text-xs font-bold">4XL</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#b35ca9] text-white text-xs font-bold">5XL</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-[#2d182b] text-[#eadada] text-xs font-bold">6XL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Bottom One-Tap CTA -->
+        <div class="mt-6 pt-4 border-t border-[#b35ca9]/20 space-y-2.5">
+            <a href="tel:+919876543210" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-[#b35ca9] to-[#2d182b] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg active:scale-98 transition">
+                <i class="fa-solid fa-phone-volume"></i>
+                <span>Call Store: +91 98765 43210</span>
+            </a>
+            <p class="text-center text-[11px] text-[#5e455b] font-medium">
+                Open Daily: 10:30 AM – 9:30 PM
+            </p>
+        </div>
+    </aside>
+
+    <!-- ===================================================================== -->
+    <!-- 3. HERO SECTION WITH MOBILE-OPTIMIZED LAYOUT & BACKGROUND IMAGE       -->
+    <!-- ===================================================================== -->
+    <section id="home" class="relative min-h-[92vh] sm:min-h-screen flex items-center pt-28 sm:pt-32 pb-14 overflow-hidden">
+        <!-- High-Res Fashion Boutique Background Image with Fallback -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1920&q=85" 
+                onerror="this.src='https://placehold.co/1920x1080/b35ca9/eadada?text=HI+FI+Ladies+Store+Boutique'"
+                alt="HI FI Ladies Store Fashion Boutique Rack" 
+                class="w-full h-full object-cover object-center scale-105"
+            >
+            <!-- Rich Brand Palette Overlay (#b35ca9, #d59cc5, #eadada) -->
+            <div class="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#2d182b]/92 via-[#b35ca9]/82 to-[#2d182b]/75 sm:to-[#eadada]/75"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#eadada] via-transparent to-transparent"></div>
+        </div>
+
+        <!-- Floating Decorative Badges (Desktop Only to Prevent Mobile Crowding) -->
+        <div class="hidden xl:flex animate-float absolute right-14 top-40 z-10 bg-white/95 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-xl border border-[#d59cc5] items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-[#b35ca9] text-white flex items-center justify-center font-bold text-sm">
+                6XL
+            </div>
+            <div>
+                <p class="text-xs text-[#5e455b] font-medium">Inclusive Size Range</p>
+                <p class="text-sm font-bold text-[#2d182b]">Sizes M to 6XL In Stock!</p>
+            </div>
+        </div>
+
+        <div class="hidden xl:flex animate-float-delayed absolute right-24 bottom-28 z-10 bg-[#eadada]/95 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-xl border border-[#b35ca9]/40 items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-[#d59cc5] text-[#2d182b] flex items-center justify-center">
+                <i class="fa-solid fa-heart text-[#b35ca9]"></i>
+            </div>
+            <div>
+                <p class="text-xs text-[#5e455b] font-medium">100% Comfort Fit</p>
+                <p class="text-sm font-bold text-[#2d182b]">Flattering Cuts for Every Woman</p>
+            </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl">
+                <!-- Live Inclusive Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs sm:text-sm font-semibold tracking-wide mb-5">
+                    <span class="w-2 h-2 rounded-full bg-[#eadada] animate-ping"></span>
+                    <span>Extended Big Size Collection (M – 6XL)</span>
                 </div>
 
-                <div class="hero-stats">
-                    <div>
-                        <h3>Everyday</h3>
-                        <p>Comfort</p>
+                <h1 class="hero-heading font-serif font-extrabold text-white mb-5 drop-shadow-sm">
+                    Style Without Limits at <span class="text-[#eadada] italic block sm:inline">HI FI Ladies Store</span>
+                </h1>
+
+                <p class="text-sm sm:text-xl text-white/95 leading-relaxed mb-7 font-normal">
+                    Discover trendy ethnic wear, chic western tops, and everyday comfort outfits crafted to celebrate women of all shapes—featuring an exclusive, ready-to-wear <strong>Big Size Collection (XL to 6XL)</strong>.
+                </p>
+
+                <!-- Responsive Full-Width Mobile / Inline Desktop CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3.5 sm:gap-4">
+                    <a href="#collection" class="w-full sm:w-auto px-7 py-4 rounded-full bg-[#eadada] text-[#2d182b] hover:bg-white font-bold text-sm sm:text-base text-center shadow-xl hover:shadow-2xl transition-all transform active:scale-98 sm:hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <span>Explore Collection</span>
+                        <i class="fa-solid fa-arrow-right text-[#b35ca9]"></i>
+                    </a>
+                    <a href="#size-guide-box" class="w-full sm:w-auto px-7 py-4 rounded-full bg-[#b35ca9]/90 hover:bg-[#b35ca9] text-white border-2 border-[#d59cc5] font-bold text-sm sm:text-base text-center backdrop-blur-sm transition-all transform active:scale-98 sm:hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        <span>Check Big Size Chart</span>
+                    </a>
+                </div>
+
+                <!-- Compact Mobile-Friendly Quick Stats Cards -->
+                <div class="grid grid-cols-3 gap-2.5 sm:gap-4 mt-10 pt-7 border-t border-white/25 max-w-lg text-white">
+                    <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-3 sm:p-3.5 border border-white/15 text-center sm:text-left">
+                        <span class="block font-serif text-lg sm:text-3xl font-bold text-[#eadada]">M – 6XL</span>
+                        <span class="text-[11px] sm:text-sm text-white/90">All Sizes Ready</span>
                     </div>
-                    <div>
-                        <h3>Modern</h3>
-                        <p>Designs</p>
+                    <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-3 sm:p-3.5 border border-white/15 text-center sm:text-left">
+                        <span class="block font-serif text-lg sm:text-3xl font-bold text-[#eadada]">500+</span>
+                        <span class="text-[11px] sm:text-sm text-white/90">Fresh Styles</span>
                     </div>
+                    <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-3 sm:p-3.5 border border-white/15 text-center sm:text-left">
+                        <span class="block font-serif text-lg sm:text-3xl font-bold text-[#eadada]">100%</span>
+                        <span class="text-[11px] sm:text-sm text-white/90">Happy Smiles</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. ABOUT SECTION: BIG SIZE AVAILABILITY & HAPPY WOMEN SHOWCASE        -->
+    <!-- ===================================================================== -->
+    <section id="about" class="py-16 sm:py-28 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-[#d59cc5]/35 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-[#b35ca9]/20 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                
+                <!-- Left Column: Happy Confident Women Image Collage -->
+                <div class="lg:col-span-6 reveal-left">
+                    <div class="relative">
+                        <div class="hidden sm:block absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#b35ca9] to-[#d59cc5] opacity-30 transform -rotate-2"></div>
+                        
+                        <!-- Main Portrait Image of Happy Women -->
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img 
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=85" 
+                                onerror="this.src='https://placehold.co/800x950/d59cc5/2d182b?text=Happy+Confident+Women'"
+                                alt="Happy confident women smiling in stylish outfits at HI FI Ladies Store" 
+                                class="w-full h-[380px] sm:h-[520px] object-cover object-top"
+                            >
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#2d182b]/95 via-[#2d182b]/50 to-transparent p-5 sm:p-8 text-white">
+                                <span class="inline-block px-3 py-1 rounded-full bg-[#b35ca9] text-[11px] font-bold uppercase tracking-wider mb-2">
+                                    Confidence in Every Stitch
+                                </span>
+                                <p class="font-serif text-lg sm:text-2xl font-bold leading-snug">
+                                    "Fashion isn't about changing your size—it's about finding clothes made to celebrate you!"
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Mobile & Desktop Secondary Happy Women Review Card -->
+                        <div class="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-4 flex items-center gap-3.5 bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-[#d59cc5] sm:max-w-xs">
+                            <img 
+                                src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=300&q=80" 
+                                onerror="this.src='https://placehold.co/150x150/b35ca9/ffffff?text=Happy+Style'"
+                                alt="Smiling woman in fashionable dress" 
+                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover flex-shrink-0"
+                            >
+                            <div>
+                                <div class="flex text-[#b35ca9] text-xs mb-1">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs font-bold text-[#2d182b]">Plus-Size Friendly Boutique</p>
+                                <p class="text-[11px] text-[#5e455b] leading-snug">XL, 2XL, 3XL, 4XL, 5XL & 6XL readily available in-store.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: About Story & Interactive Size Availability Selector -->
+                <div class="lg:col-span-6 reveal-right">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-[#d59cc5]/55 text-[#2d182b] text-xs font-bold uppercase tracking-widest mb-4">
+                        About HI FI Ladies Store
+                    </span>
+
+                    <h2 class="section-heading font-serif font-extrabold text-[#2d182b] mb-5">
+                        Beautiful Fashion Designed for <span class="text-[#b35ca9]">Big Sizes & Every Body</span>
+                    </h2>
+
+                    <p class="text-sm sm:text-lg text-[#5e455b] leading-relaxed mb-4">
+                        At <strong>HI FI Ladies Store</strong>, we believe every woman deserves to walk out feeling radiant, comfortable, and effortlessly stylish. Unlike ordinary shops that stop at standard sizes, we proudly specialize in <strong>extended big-size women's clothing</strong> without compromising on modern trends or vibrant colors.
+                    </p>
+
+                    <p class="text-sm sm:text-base text-[#5e455b] leading-relaxed mb-7">
+                        Whether you're shopping for breathable daily-wear kurtis, flattering A-line dresses, stretchable comfort trousers, or festive party outfits, our curated racks carry <strong>XL through 6XL</strong> right off the hanger—with complimentary minor alterations so your outfit fits like a dream.
+                    </p>
+
+                    <!-- Interactive Size Availability & Measurement Selector -->
+                    <div id="size-guide-box" class="scroll-mt-28 bg-white/90 backdrop-blur-sm rounded-3xl p-5 sm:p-6 border border-[#d59cc5] shadow-lg mb-7">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="font-bold text-xs sm:text-sm uppercase tracking-wider text-[#2d182b]">
+                                <i class="fa-solid fa-ruler-horizontal text-[#b35ca9] mr-1.5"></i> Tap a Size to View Measurements
+                            </h3>
+                            <span class="text-[11px] font-bold text-[#b35ca9] bg-[#eadada] px-3 py-1 rounded-full">In-Stock Ready</span>
+                        </div>
+
+                        <!-- Interactive Size Buttons -->
+                        <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 mb-4" id="size-selector-buttons">
+                            <button type="button" data-size="M" class="size-pill py-2.5 rounded-xl bg-[#eadada] text-[#2d182b] font-bold text-xs sm:text-sm transition cursor-pointer">M</button>
+                            <button type="button" data-size="L" class="size-pill py-2.5 rounded-xl bg-[#eadada] text-[#2d182b] font-bold text-xs sm:text-sm transition cursor-pointer">L</button>
+                            <button type="button" data-size="XL" class="size-pill py-2.5 rounded-xl bg-[#d59cc5]/55 text-[#2d182b] font-bold text-xs sm:text-sm transition cursor-pointer">XL</button>
+                            <button type="button" data-size="2XL" class="size-pill py-2.5 rounded-xl bg-[#d59cc5]/55 text-[#2d182b] font-bold text-xs sm:text-sm transition cursor-pointer">2XL</button>
+                            <button type="button" data-size="3XL" class="size-pill active-size py-2.5 rounded-xl bg-[#b35ca9] text-white font-bold text-xs sm:text-sm shadow-md transition cursor-pointer">3XL</button>
+                            <button type="button" data-size="4XL" class="size-pill py-2.5 rounded-xl bg-[#d59cc5]/55 text-[#2d182b] font-bold text-xs sm:text-sm transition cursor-pointer">4XL</button>
+                            <button type="button" data-size="5XL" class="size-pill py-2.5 rounded-xl bg-[#d59cc5]/55 text-[#2d182b] font-bold text-xs sm:text-sm transition cursor-pointer">5XL</button>
+                            <button type="button" data-size="6XL" class="size-pill py-2.5 rounded-xl bg-[#2d182b] text-[#eadada] font-bold text-xs sm:text-sm transition cursor-pointer">6XL</button>
+                        </div>
+
+                        <!-- Live Measurement Readout Panel -->
+                        <div id="size-measurement-display" class="p-3.5 sm:p-4 rounded-2xl bg-[#eadada]/65 border border-[#b35ca9]/25">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                <span id="selected-size-label" class="font-serif font-bold text-base sm:text-lg text-[#2d182b]">Size 3XL (Big Size)</span>
+                                <span id="selected-size-status" class="text-xs font-bold text-[#b35ca9]"><i class="fa-solid fa-circle-check mr-1"></i>High Stock Available</span>
+                            </div>
+                            <p id="selected-size-dims" class="text-xs sm:text-sm font-semibold text-[#2d182b] mb-1">
+                                Bust: 46" • Waist: 40" • Hip: 49"
+                            </p>
+                            <p id="selected-size-note" class="text-xs text-[#5e455b]">
+                                Generous armhole ease & extra 1.5" inner margin for effortless comfort.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 3 Key Feature Badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                        <div class="p-4 rounded-2xl bg-white/80 border border-[#d59cc5]/60">
+                            <div class="w-9 h-9 rounded-xl bg-[#b35ca9]/15 text-[#b35ca9] flex items-center justify-center mb-2.5">
+                                <i class="fa-solid fa-maximize"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-[#2d182b] mb-1">Inclusive Sizing</h4>
+                            <p class="text-xs text-[#5e455b]">Dedicated plus-size racks from XL up to 6XL.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-white/80 border border-[#d59cc5]/60">
+                            <div class="w-9 h-9 rounded-xl bg-[#b35ca9]/15 text-[#b35ca9] flex items-center justify-center mb-2.5">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-[#2d182b] mb-1">Trendy Cuts</h4>
+                            <p class="text-xs text-[#5e455b]">Modern silhouettes tailored to flatter every curve.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-white/80 border border-[#d59cc5]/60">
+                            <div class="w-9 h-9 rounded-xl bg-[#b35ca9]/15 text-[#b35ca9] flex items-center justify-center mb-2.5">
+                                <i class="fa-solid fa-feather-pointed"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-[#2d182b] mb-1">Soft Fabrics</h4>
+                            <p class="text-xs text-[#5e455b]">Breathable cottons & drapes for all-day ease.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. FEATURED COLLECTION & CATEGORIES SECTION                           -->
+    <!-- ===================================================================== -->
+    <section id="collection" class="py-16 sm:py-28 bg-white/55 border-y border-[#d59cc5]/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 reveal">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-[#b35ca9]/15 text-[#b35ca9] text-xs font-bold uppercase tracking-widest mb-3">
+                    Curated For You
+                </span>
+                <h2 class="section-heading font-serif font-extrabold text-[#2d182b] mb-3.5">
+                    Our Featured Collection
+                </h2>
+                <p class="text-sm sm:text-lg text-[#5e455b]">
+                    Explore our best-selling women's wear crafted with generous seam allowances, breathable fabrics, and flattering fits across all sizes.
+                </p>
+
+                <!-- Touch-Friendly Horizontal Scrollable Filter Pills on Mobile -->
+                <div class="flex sm:justify-center gap-2.5 mt-7 overflow-x-auto no-scrollbar pb-2 px-1" id="filter-buttons">
+                    <button data-filter="all" class="filter-btn active flex-shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-[#b35ca9] text-white shadow-md transition cursor-pointer">
+                        All Styles
+                    </button>
+                    <button data-filter="ethnic" class="filter-btn flex-shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-[#eadada] text-[#2d182b] hover:bg-[#d59cc5] transition cursor-pointer">
+                        Ethnic & Kurtis
+                    </button>
+                    <button data-filter="western" class="filter-btn flex-shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-[#eadada] text-[#2d182b] hover:bg-[#d59cc5] transition cursor-pointer">
+                        Western & Dresses
+                    </button>
+                    <button data-filter="festive" class="filter-btn flex-shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-[#eadada] text-[#2d182b] hover:bg-[#d59cc5] transition cursor-pointer">
+                        Party & Festive
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product / Category Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" id="collection-grid">
+                
+                <!-- Card 1 -->
+                <div class="collection-card reveal bg-[#eadada]/75 rounded-3xl overflow-hidden border border-[#d59cc5] flex flex-col justify-between" data-category="ethnic">
                     <div>
-                        <h3>Smart</h3>
-                        <p>Fashion</p>
+                        <div class="relative h-64 sm:h-72 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=700&q=80" 
+                                onerror="this.src='https://placehold.co/600x750/b35ca9/ffffff?text=Ethnic+Kurtis+XL-6XL'"
+                                alt="Plus-Size Kurtis & Ethnic Sets" 
+                                class="w-full h-full object-cover"
+                            >
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-[#b35ca9] text-white text-xs font-bold shadow">
+                                Sizes M – 6XL
+                            </span>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#b35ca9]">Ethnic Wear</span>
+                            <h3 class="font-serif text-xl font-bold text-[#2d182b] mt-1 mb-2">Designer Kurtis & Palazzo Sets</h3>
+                            <p class="text-sm text-[#5e455b] leading-relaxed">
+                                Breathable cotton & rayon A-line kurtis with roomy armholes and elegant embroidery.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <button 
+                            onclick="openQuickView('Designer Kurtis & Palazzo Sets', 'Sizes M to 6XL Available', 'Crafted from soft, breathable pure cotton and modal silk, our plus-size kurtis feature flattering vertical prints, comfortable side slits, and extra seam allowance for effortless movement.', 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=700&q=80')"
+                            class="w-full py-3 rounded-xl bg-white hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-semibold text-sm border border-[#b35ca9]/30 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>View Size & Fit Details</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="collection-card reveal bg-[#eadada]/75 rounded-3xl overflow-hidden border border-[#d59cc5] flex flex-col justify-between" data-category="western">
+                    <div>
+                        <div class="relative h-64 sm:h-72 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80" 
+                                onerror="this.src='https://placehold.co/600x750/d59cc5/2d182b?text=Western+Tops+XL-5XL'"
+                                alt="Stylish Western Tops and Maxi Dresses" 
+                                class="w-full h-full object-cover"
+                            >
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-[#b35ca9] text-white text-xs font-bold shadow">
+                                Sizes S – 5XL
+                            </span>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#b35ca9]">Western Chic</span>
+                            <h3 class="font-serif text-xl font-bold text-[#2d182b] mt-1 mb-2">Flowy Midi Dresses & Tunic Tops</h3>
+                            <p class="text-sm text-[#5e455b] leading-relaxed">
+                                Wrap silhouettes, peplum tops, and stretch-waist dresses made to accentuate your confidence.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <button 
+                            onclick="openQuickView('Flowy Midi Dresses & Tunic Tops', 'Sizes S to 5XL Available', 'Designed with waist-cinching wrap belts, soft drape georgette, and non-clingy linings so you feel confident at brunch, work, or weekend outings.', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80')"
+                            class="w-full py-3 rounded-xl bg-white hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-semibold text-sm border border-[#b35ca9]/30 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>View Size & Fit Details</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="collection-card reveal bg-[#eadada]/75 rounded-3xl overflow-hidden border border-[#d59cc5] flex flex-col justify-between" data-category="western">
+                    <div>
+                        <div class="relative h-64 sm:h-72 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1551803091-e20673f15770?auto=format&fit=crop&w=700&q=80" 
+                                onerror="this.src='https://placehold.co/600x750/b35ca9/eadada?text=Comfort+Co-ords+XL-6XL'"
+                                alt="Comfort Lounge Co-ord Sets and Stretch Bottoms" 
+                                class="w-full h-full object-cover"
+                            >
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-[#2d182b] text-[#eadada] text-xs font-bold shadow">
+                                Sizes L – 6XL
+                            </span>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#b35ca9]">Everyday Ease</span>
+                            <h3 class="font-serif text-xl font-bold text-[#2d182b] mt-1 mb-2">Co-ord Sets & High-Stretch Pants</h3>
+                            <p class="text-sm text-[#5e455b] leading-relaxed">
+                                Butter-soft lounge sets, breathable cotton pants, and anti-chafe comfort leggings in big sizes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <button 
+                            onclick="openQuickView('Co-ord Sets & High-Stretch Pants', 'Sizes L to 6XL Available', 'Featuring wide soft-elastic waistbands that never dig in, deep functional pockets, and 4-way stretch fabrics tailored specifically for curvy proportions.', 'https://images.unsplash.com/photo-1551803091-e20673f15770?auto=format&fit=crop&w=700&q=80')"
+                            class="w-full py-3 rounded-xl bg-white hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-semibold text-sm border border-[#b35ca9]/30 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>View Size & Fit Details</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="collection-card reveal bg-[#eadada]/75 rounded-3xl overflow-hidden border border-[#d59cc5] flex flex-col justify-between" data-category="festive">
+                    <div>
+                        <div class="relative h-64 sm:h-72 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80" 
+                                onerror="this.src='https://placehold.co/600x750/d59cc5/2d182b?text=Festive+Wear+XL-6XL'"
+                                alt="Party and Festive Anarkali Suits" 
+                                class="w-full h-full object-cover"
+                            >
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-[#b35ca9] text-white text-xs font-bold shadow">
+                                Sizes M – 6XL
+                            </span>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#b35ca9]">Celebration Ready</span>
+                            <h3 class="font-serif text-xl font-bold text-[#2d182b] mt-1 mb-2">Festive Anarkalis & Gown Sets</h3>
+                            <p class="text-sm text-[#5e455b] leading-relaxed">
+                                Regal zari work, flared silhouettes, and lightweight dupattas designed for weddings & celebrations.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <button 
+                            onclick="openQuickView('Festive Anarkalis & Gown Sets', 'Sizes M to 6XL Available', 'Shine at every wedding and festival! Our plus-size Anarkalis and festive gowns come with soft cotton linings and customizable sleeve & waist fitting.', 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80')"
+                            class="w-full py-3 rounded-xl bg-white hover:bg-[#b35ca9] text-[#2d182b] hover:text-white font-semibold text-sm border border-[#b35ca9]/30 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>View Size & Fit Details</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. SIZE INCLUSIVITY BANNER & HAPPY CUSTOMER TESTIMONIALS              -->
+    <!-- ===================================================================== -->
+    <section id="why-us" class="py-16 sm:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Gradient Promo Banner -->
+            <div class="reveal rounded-3xl bg-gradient-to-r from-[#b35ca9] via-[#9e4b95] to-[#2d182b] p-7 sm:p-14 text-white shadow-2xl relative overflow-hidden mb-16 sm:mb-20">
+                <div class="absolute right-0 top-0 w-72 h-72 bg-[#d59cc5]/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-7">
+                    <div class="max-w-2xl text-center lg:text-left">
+                        <span class="inline-block px-3.5 py-1 rounded-full bg-white/20 text-[#eadada] text-xs font-bold uppercase tracking-widest mb-3">
+                            No More Compromising on Style
+                        </span>
+                        <h2 class="font-serif text-2xl sm:text-4xl font-extrabold mb-3.5">
+                            Dedicated Big-Size Boutique Corner (XL to 6XL)
+                        </h2>
+                        <p class="text-white/90 text-sm sm:text-lg leading-relaxed">
+                            Walk into <strong>HI FI Ladies Store</strong> and enjoy private trial rooms, friendly styling assistance, and fresh weekly arrivals made specifically for curvy & plus-size women.
+                        </p>
+                    </div>
+                    <div class="w-full sm:w-auto flex-shrink-0">
+                        <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#eadada] text-[#2d182b] hover:bg-white font-bold shadow-lg transition transform hover:scale-105">
+                            <i class="fa-solid fa-location-dot text-[#b35ca9]"></i>
+                            <span>Find Our Store</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="hero-visual reveal">
-                <div class="hero-image-wrap">
-                    <img
-                        src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1000&q=85"
-                        alt="Modern men's fashion outfit"
-                    >
-                    <div class="image-label">
-                        <span>THE NEW EDIT</span>
-                        <strong>Made for Your Style.</strong>
+            <!-- Customer Love / Testimonials -->
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12 reveal">
+                <h3 class="font-serif text-2xl sm:text-4xl font-extrabold text-[#2d182b] mb-2.5">
+                    Loved by Happy Women
+                </h3>
+                <p class="text-sm sm:text-base text-[#5e455b]">Real stories from shoppers who found their favorite outfits at HI FI Ladies Store.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="reveal bg-white/85 p-6 sm:p-7 rounded-3xl border border-[#d59cc5] shadow-md">
+                    <div class="flex text-[#b35ca9] text-sm mb-3.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm sm:text-base text-[#2d182b] italic mb-5 leading-relaxed">
+                        "Finding trendy 4XL kurtis and western tops used to be so hard until I visited HI FI Ladies Store! Their collection is vibrant, modern, and fits comfortably."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#b35ca9] text-white font-bold text-sm flex items-center justify-center">PR</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2d182b]">Priya R.</h4>
+                            <span class="text-xs text-[#5e455b]">Verified Boutique Shopper</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- <div class="floating-card card-top">
-                    <span class="card-icon">✦</span>
-                    <div>
-                        <strong>Modern Fits</strong>
-                        <small>Made for everyday style</small>
+                <div class="reveal bg-white/85 p-6 sm:p-7 rounded-3xl border border-[#d59cc5] shadow-md">
+                    <div class="flex text-[#b35ca9] text-sm mb-3.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm sm:text-base text-[#2d182b] italic mb-5 leading-relaxed">
+                        "Such warm staff and amazing fabric quality! Both my mom and I shop here together because they carry everything from Medium right up to 6XL."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#d59cc5] text-[#2d182b] font-bold text-sm flex items-center justify-center">AK</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2d182b]">Ananya K.</h4>
+                            <span class="text-xs text-[#5e455b]">Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal bg-white/85 p-6 sm:p-7 rounded-3xl border border-[#d59cc5] shadow-md">
+                    <div class="flex text-[#b35ca9] text-sm mb-3.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm sm:text-base text-[#2d182b] italic mb-5 leading-relaxed">
+                        "I bought a festive Anarkali in 3XL and received endless compliments! The cut was so flattering and breathable even after hours of dancing."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#2d182b] text-[#eadada] font-bold text-sm flex items-center justify-center">SM</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2d182b]">Sneha M.</h4>
+                            <span class="text-xs text-[#5e455b]">Festive Collection Buyer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 7. CONTACT & VISIT STORE SECTION                                      -->
+    <!-- ===================================================================== -->
+    <section id="contact" class="py-16 sm:py-24 bg-white/60 border-t border-[#d59cc5]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <div class="reveal-left">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-[#b35ca9]/15 text-[#b35ca9] text-xs font-bold uppercase tracking-widest mb-3">
+                        Visit Our Boutique
+                    </span>
+                    <h2 class="section-heading font-serif font-extrabold text-[#2d182b] mb-4">
+                        Step Into <span class="text-[#b35ca9]">HI FI Ladies Store</span>
+                    </h2>
+                    <p class="text-[#5e455b] text-sm sm:text-lg mb-7 leading-relaxed">
+                        Have a question about big-size availability or looking for a specific outfit? Drop by our store or send us a quick inquiry below!
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-11 h-11 rounded-2xl bg-[#b35ca9] text-white flex items-center justify-center flex-shrink-0 shadow">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm sm:text-base text-[#2d182b]">Store Address</h4>
+                                <p class="text-xs sm:text-sm text-[#5e455b]">Main Fashion Avenue, Near City Center Plaza, Shop No. 12</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-11 h-11 rounded-2xl bg-[#d59cc5] text-[#2d182b] flex items-center justify-center flex-shrink-0 shadow">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm sm:text-base text-[#2d182b]">Opening Hours</h4>
+                                <p class="text-xs sm:text-sm text-[#5e455b]">Monday – Sunday: 10:30 AM – 9:30 PM (Open All 7 Days)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-11 h-11 rounded-2xl bg-[#2d182b] text-[#eadada] flex items-center justify-center flex-shrink-0 shadow">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm sm:text-base text-[#2d182b]">Call / WhatsApp Store Desk</h4>
+                                <p class="text-xs sm:text-sm text-[#5e455b]">+91 98765 43210 • hifiladiesstore@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Static Inquiry Card -->
+                <!-- <div class="reveal-right bg-[#eadada] p-6 sm:p-10 rounded-3xl border border-[#b35ca9]/30 shadow-xl">
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#2d182b] mb-1.5">Check Size Availability</h3>
+                    <p class="text-xs sm:text-sm text-[#5e455b] mb-5">Let us know your preferred style and size, and our styling team will assist you.</p>
+
+                    <form id="inquiry-form" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-[#2d182b] mb-1.5">Your Name</label>
+                            <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl bg-white border border-[#d59cc5] focus:outline-none focus:border-[#b35ca9] text-sm">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-[#2d182b] mb-1.5">Preferred Size</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-white border border-[#d59cc5] focus:outline-none focus:border-[#b35ca9] text-sm">
+                                    <option>XL</option>
+                                    <option>2XL</option>
+                                    <option selected>3XL (Big Size)</option>
+                                    <option>4XL (Big Size)</option>
+                                    <option>5XL (Big Size)</option>
+                                    <option>6XL (Big Size)</option>
+                                    <option>M / L</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-[#2d182b] mb-1.5">Category</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-white border border-[#d59cc5] focus:outline-none focus:border-[#b35ca9] text-sm">
+                                    <option>Kurtis & Ethnic Sets</option>
+                                    <option>Western Tops & Dresses</option>
+                                    <option>Party & Festive Wear</option>
+                                    <option>Lounge & Comfort Pants</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-[#2d182b] mb-1.5">Message (Optional)</label>
+                            <textarea rows="3" placeholder="Any specific color or outfit style you are looking for?" class="w-full px-4 py-3 rounded-xl bg-white border border-[#d59cc5] focus:outline-none focus:border-[#b35ca9] text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-[#b35ca9] hover:bg-[#96448d] text-white font-bold shadow-lg transition transform active:scale-98 cursor-pointer">
+                            Send Inquiry <i class="fa-solid fa-paper-plane ml-1.5"></i>
+                        </button>
+                    </form>
+
+                    <!-- Custom Inline Feedback Banner (Replaces alert()) -->
+                    <div id="form-feedback" class="hidden mt-4 p-4 rounded-xl bg-white border border-[#b35ca9] text-[#2d182b] text-xs sm:text-sm font-medium flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-[#b35ca9] text-lg"></i>
+                        <span>Thank you! Your inquiry has been noted. Visit <strong>HI FI Ladies Store</strong> anytime to try our latest collection!</span>
                     </div>
                 </div> -->
-
-                <div class="floating-card card-bottom">
-                    <span class="card-icon">✓</span>
-                    <div>
-                        <strong>Style Essentials</strong>
-                        <small>From casual to formal</small>
-                    </div>
-                </div>
             </div>
-
-            <div class="hero-decoration"></div>
-        </section>
-
-        <!-- Category Section -->
-        <section class="collections section" id="collections">
-            <div class="section-heading reveal">
-                <div>
-                    <span class="eyebrow">FIND YOUR LOOK</span>
-                    <h2>Explore Our <span>Collections</span></h2>
-                </div>
-                <p>Everyday essentials and statement pieces for your wardrobe.</p>
-            </div>
-
-            <div class="collection-grid">
-                <a href="#contact" class="collection-card reveal">
-                    <img
-                        src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=85"
-                        alt="Men's casual shirts"
-                    >
-                    <div class="collection-overlay">
-                        <span>01 / EVERYDAY STYLE</span>
-                        <h3>Casual Shirts</h3>
-                        <p>Easy style. All-day comfort. ↗</p>
-                    </div>
-                </a>
-
-                <a href="#contact" class="collection-card reveal">
-                    <img
-                        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85"
-                        alt="Men's T-shirts"
-                    >
-                    <div class="collection-overlay">
-                        <span>02 / DAILY ESSENTIALS</span>
-                        <h3>T-Shirts</h3>
-                        <p>Simple looks. Strong style. ↗</p>
-                    </div>
-                </a>
-
-                <a href="#contact" class="collection-card reveal">
-                    <img
-                        src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=85"
-                        alt="Men's smart clothing"
-                    >
-                    <div class="collection-overlay">
-                        <span>03 / SMART LOOKS</span>
-                        <h3>Formal Wear</h3>
-                        <p>Look sharp for every occasion. ↗</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="about section" id="about">
-            <div class="about-image reveal">
-                <img
-                    src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1000&q=85"
-                    alt="Men's fashion and styling"
-                >
-                <div class="about-stamp">
-                    <span>YOUR STYLE</span>
-                    <strong>Your Rules.</strong>
-                </div>
-            </div>
-
-            <div class="about-content reveal">
-                <span class="eyebrow">MORE THAN JUST CLOTHING</span>
-                <h2>Confidence Begins<br>With <span>What You Wear.</span></h2>
-                <p>
-                    At सार्थक क्रिएशन, we believe great style should feel
-                    effortless. Our collection brings together modern designs,
-                    versatile essentials, and looks that fit your lifestyle.
-                </p>
-                <p>
-                    Whether you're dressing for a casual day out, work, or a
-                    special occasion, find a look that feels like you.
-                </p>
-                <a href="#contact" class="btn btn-primary">Find Your Style ↗</a>
-            </div>
-        </section>
-
-        <!-- Why Choose Us -->
-        <section class="features section">
-            <div class="section-heading centered reveal">
-                <span class="eyebrow">THE SARTAK DIFFERENCE</span>
-                <h2>Style Made <span>Simple.</span></h2>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">✦</div>
-                    <h3>Modern Designs</h3>
-                    <p>Explore contemporary styles that keep your look fresh.</p>
-                </div>
-
-                <div class="feature-card reveal">
-                    <div class="feature-icon">◇</div>
-                    <h3>Everyday Comfort</h3>
-                    <p>Find versatile clothing for your daily routine.</p>
-                </div>
-
-                <div class="feature-card reveal">
-                    <div class="feature-icon">↗</div>
-                    <h3>Style for Every Occasion</h3>
-                    <p>From relaxed weekends to smart formal looks.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="contact section" id="contact">
-            <div class="contact-box reveal">
-                <span class="eyebrow">YOUR NEXT LOOK STARTS HERE</span>
-                <h2>Ready to Upgrade<br>Your <span>Wardrobe?</span></h2>
-                <p>Visit our store and explore the latest men's fashion collection.</p>
-                <a href="https://wa.me/91YOURNUMBER" class="btn btn-light" target="_blank" rel="noopener">
-                    Contact Us on WhatsApp ↗
-                </a>
-                <small>Replace the sample WhatsApp number in the link with your business number.</small>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <a href="#home" class="logo">सार्थक <span>क्रिएशन</span></a>
-        <p>Modern Men's Fashion. Made for Your Style.</p>
-        <div class="footer-links">
-            <a href="#home">Home</a>
-            <a href="#collections">Collections</a>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact</a>
         </div>
-        <div class="footer-bottom">
-            © <span id="year"></span> सार्थक क्रिएशन. All rights reserved.
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 8. FOOTER + BACK TO TOP BUTTON                                        -->
+    <!-- ===================================================================== -->
+    <footer class="bg-[#2d182b] text-[#eadada] pt-14 pb-8 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-white/15">
+                
+                <!-- Brand Summary -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#b35ca9] to-[#d59cc5] flex items-center justify-center text-white font-serif font-bold text-lg">
+                            HF
+                        </div>
+                        <span class="font-serif text-xl sm:text-2xl font-bold text-white">HI FI Ladies Store</span>
+                    </div>
+                    <p class="text-sm text-[#eadada]/80 leading-relaxed mb-5">
+                        Your destination for stylish women's garments, celebrating beauty in every size with dedicated Big Size collections from XL to 6XL.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#contact" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#b35ca9] flex items-center justify-center text-white transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#contact" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#b35ca9] flex items-center justify-center text-white transition">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#contact" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#b35ca9] flex items-center justify-center text-white transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-3.5">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-[#eadada]/80">
+                        <li><a href="#home" class="hover:text-[#d59cc5] transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-[#d59cc5] transition">About & Big Size Range</a></li>
+                        <li><a href="#collection" class="hover:text-[#d59cc5] transition">Featured Collection</a></li>
+                        <li><a href="#why-us" class="hover:text-[#d59cc5] transition">Customer Reviews</a></li>
+                        <li><a href="#contact" class="hover:text-[#d59cc5] transition">Visit Store</a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Categories -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-3.5">Popular Collections</h4>
+                    <ul class="space-y-2 text-sm text-[#eadada]/80">
+                        <li>Plus-Size Kurtis (XL – 6XL)</li>
+                        <li>Trendy Western Tops & Tunics</li>
+                        <li>Festive Anarkalis & Gowns</li>
+                        <li>Stretch Pants & Co-ord Sets</li>
+                        <li>Complimentary In-Store Fitting</li>
+                    </ul>
+                </div>
+
+                <!-- Store Hours & Contact -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-3.5">Store Timings</h4>
+                    <p class="text-sm text-[#eadada]/80 mb-2">
+                        <strong class="text-white">Mon – Sun:</strong> 10:30 AM – 9:30 PM
+                    </p>
+                    <p class="text-sm text-[#eadada]/80 mb-4">
+                        Main Fashion Avenue, Shop No. 12
+                    </p>
+                    <span class="inline-block px-3.5 py-1.5 rounded-full bg-[#b35ca9]/30 border border-[#d59cc5]/40 text-xs font-semibold text-[#d59cc5]">
+                        All Sizes M to 6XL Available
+                    </span>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-7 flex flex-col sm:flex-row items-center justify-between text-xs text-[#eadada]/70 gap-3 text-center sm:text-left">
+                <p>&copy; <span id="current-year"></span> HI FI Ladies Store. All Rights Reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart text-[#d59cc5]"></i> for Confident Women Everywhere.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Floating Back-to-Top Button -->
+    <button id="back-to-top" aria-label="Back to Top" class="fixed bottom-5 right-5 z-30 w-11 h-11 rounded-full bg-[#b35ca9] hover:bg-[#2d182b] text-white shadow-xl border border-white/30 flex items-center justify-center opacity-0 invisible translate-y-4 transition-all duration-300 cursor-pointer">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+    </button>
+
+    <!-- ===================================================================== -->
+    <!-- QUICK-VIEW MODAL FOR COLLECTION DETAILS                               -->
+    <!-- ===================================================================== -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#2d182b]/75 backdrop-blur-sm">
+        <div class="bg-[#eadada] rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border-2 border-[#d59cc5] transform transition-all">
+            <div class="relative h-56 sm:h-60">
+                <img id="modal-img" src="" alt="Outfit Preview" class="w-full h-full object-cover">
+                <button onclick="closeQuickView()" aria-label="Close Modal" class="absolute top-3.5 right-3.5 w-10 h-10 rounded-full bg-[#2d182b]/80 text-white hover:bg-[#b35ca9] flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span id="modal-badge" class="absolute bottom-3.5 left-3.5 px-3.5 py-1 rounded-full bg-[#b35ca9] text-white text-xs font-bold shadow"></span>
+            </div>
+            <div class="p-5 sm:p-8">
+                <h3 id="modal-title" class="font-serif text-xl sm:text-2xl font-bold text-[#2d182b] mb-2"></h3>
+                <p id="modal-desc" class="text-xs sm:text-sm text-[#5e455b] leading-relaxed mb-6"></p>
+                <div class="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+                    <a href="#contact" onclick="closeQuickView()" class="flex-1 py-3 rounded-xl bg-[#b35ca9] hover:bg-[#96448d] text-white font-bold text-center text-sm transition">
+                        Check In-Store Availability
+                    </a>
+                    <button onclick="closeQuickView()" class="px-5 py-3 rounded-xl bg-white text-[#2d182b] font-semibold text-sm border border-[#d59cc5] hover:bg-[#d59cc5]/30 transition cursor-pointer">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT: SPLASH, MOBILE DRAWER, SIZE SELECTOR, SCROLL & MODAL      -->
+    <!-- ===================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Set Dynamic Copyright Year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 2. Splash Screen Transition Logic
+            const splashScreen = document.getElementById('splash-screen');
+            const skipSplashBtn = document.getElementById('skip-splash-btn');
+
+            function hideSplashScreen() {
+                if (!splashScreen.classList.contains('fade-out')) {
+                    splashScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 900);
+                }
+            }
+
+            const splashTimer = setTimeout(hideSplashScreen, 2400);
+            skipSplashBtn.addEventListener('click', () => {
+                clearTimeout(splashTimer);
+                hideSplashScreen();
+            });
+
+            // 3. Slide-Out Mobile Drawer & Morphing Hamburger Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            const drawerLinks = document.querySelectorAll('.drawer-link');
+
+            function openDrawer() {
+                mobileDrawer.classList.add('open');
+                mobileMenuBtn.classList.add('menu-open', 'bg-[#b35ca9]');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                drawerBackdrop.classList.remove('hidden');
+                setTimeout(() => drawerBackdrop.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                mobileDrawer.classList.remove('open');
+                mobileMenuBtn.classList.remove('menu-open', 'bg-[#b35ca9]');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                drawerBackdrop.classList.add('opacity-0');
+                setTimeout(() => drawerBackdrop.classList.add('hidden'), 300);
+                document.body.style.overflow = '';
+            }
+
+            mobileMenuBtn.addEventListener('click', () => {
+                if (mobileDrawer.classList.contains('open')) {
+                    closeDrawer();
+                } else {
+                    openDrawer();
+                }
+            });
+
+            drawerBackdrop.addEventListener('click', closeDrawer);
+            drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+            // 4. Navbar Scroll Styling & Back-to-Top Visibility
+            const navbar = document.getElementById('navbar');
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (window.scrollY > 450) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+                }
+            }, { passive: true });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 5. Interactive Size Measurement Selector (M to 6XL)
+            const sizeData = {
+                'M': {
+                    label: 'Size M (Regular Fit)',
+                    status: 'Available In-Store',
+                    dims: 'Bust: 38" • Waist: 32" • Hip: 41"',
+                    note: 'Tailored regular silhouette with breathable cotton lining.'
+                },
+                'L': {
+                    label: 'Size L (Regular Fit)',
+                    status: 'Available In-Store',
+                    dims: 'Bust: 40" • Waist: 34" • Hip: 43"',
+                    note: 'Relaxed everyday drape with adjustable side ties on select kurtis.'
+                },
+                'XL': {
+                    label: 'Size XL (Comfort Plus)',
+                    status: 'High Stock Available',
+                    dims: 'Bust: 42" • Waist: 36" • Hip: 45"',
+                    note: 'Designed with extra bust & armhole room for effortless all-day movement.'
+                },
+                '2XL': {
+                    label: 'Size 2XL (Plus Fit)',
+                    status: 'High Stock Available',
+                    dims: 'Bust: 44" • Waist: 38" • Hip: 47"',
+                    note: 'Flattering A-line & empire-waist cuts with soft stretch waistbands.'
+                },
+                '3XL': {
+                    label: 'Size 3XL (Big Size)',
+                    status: 'High Stock Available',
+                    dims: 'Bust: 46" • Waist: 40" • Hip: 49"',
+                    note: 'Generous armhole ease & extra 1.5" inner margin for effortless comfort.'
+                },
+                '4XL': {
+                    label: 'Size 4XL (Big Size)',
+                    status: 'Dedicated Rack Ready',
+                    dims: 'Bust: 48" • Waist: 42" • Hip: 51"',
+                    note: 'Non-clingy premium fabrics with complimentary in-store length/sleeve alteration.'
+                },
+                '5XL': {
+                    label: 'Size 5XL (Big Size)',
+                    status: 'Dedicated Rack Ready',
+                    dims: 'Bust: 50" • Waist: 44" • Hip: 53"',
+                    note: 'Crafted specifically for curvy proportions—no tight sleeves or pulling buttons.'
+                },
+                '6XL': {
+                    label: 'Size 6XL (Super Big Size)',
+                    status: 'Specialty Collection Ready',
+                    dims: 'Bust: 52" • Waist: 46" • Hip: 55"',
+                    note: 'Full festive, ethnic & daily-wear range available directly off the hanger!'
+                }
+            };
+
+            const sizeButtons = document.querySelectorAll('.size-pill');
+            const sizeLabelEl = document.getElementById('selected-size-label');
+            const sizeStatusEl = document.getElementById('selected-size-status');
+            const sizeDimsEl = document.getElementById('selected-size-dims');
+            const sizeNoteEl = document.getElementById('selected-size-note');
+
+            sizeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sizeButtons.forEach(b => {
+                        b.classList.remove('bg-[#b35ca9]', 'text-white', 'shadow-md', 'scale-105');
+                        if (b.dataset.size === '6XL') {
+                            b.classList.add('bg-[#2d182b]', 'text-[#eadada]');
+                        } else if (['M', 'L'].includes(b.dataset.size)) {
+                            b.classList.add('bg-[#eadada]', 'text-[#2d182b]');
+                        } else {
+                            b.classList.add('bg-[#d59cc5]/55', 'text-[#2d182b]');
+                        }
+                    });
+
+                    btn.classList.remove('bg-[#eadada]', 'bg-[#d59cc5]/55', 'bg-[#2d182b]', 'text-[#2d182b]', 'text-[#eadada]');
+                    btn.classList.add('bg-[#b35ca9]', 'text-white', 'shadow-md', 'scale-105');
+
+                    const info = sizeData[btn.dataset.size];
+                    if (info) {
+                        sizeLabelEl.textContent = info.label;
+                        sizeStatusEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i>${info.status}`;
+                        sizeDimsEl.textContent = info.dims;
+                        sizeNoteEl.textContent = info.note;
+                    }
+                });
+            });
+
+            // 6. Intersection Observer for Smooth Scroll-Reveal Animations
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -30px 0px'
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 7. Collection Category Filter Logic
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const collectionCards = document.querySelectorAll('.collection-card');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('bg-[#b35ca9]', 'text-white', 'shadow-md');
+                        b.classList.add('bg-[#eadada]', 'text-[#2d182b]');
+                    });
+                    btn.classList.remove('bg-[#eadada]', 'text-[#2d182b]');
+                    btn.classList.add('bg-[#b35ca9]', 'text-white', 'shadow-md');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    collectionCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filterValue === 'all' || category === filterValue) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 20);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(15px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 250);
+                        }
+                    });
+                });
+            });
+
+            // 8. Static Form Submission Feedback (No alert())
+            const inquiryForm = document.getElementById('inquiry-form');
+            const formFeedback = document.getElementById('form-feedback');
+
+            inquiryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                formFeedback.classList.remove('hidden');
+                inquiryForm.reset();
+            });
+        });
+
+        // 9. Quick-View Modal Functions
+        const quickViewModal = document.getElementById('quick-view-modal');
+
+        function openQuickView(title, badge, desc, imgSrc) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-badge').textContent = badge;
+            document.getElementById('modal-desc').textContent = desc;
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = imgSrc;
+            modalImg.onerror = function() {
+                this.src = 'https://placehold.co/600x400/b35ca9/eadada?text=HI+FI+Ladies+Store';
+            };
+            quickViewModal.classList.remove('hidden');
+            quickViewModal.classList.add('flex');
+        }
+
+        function closeQuickView() {
+            quickViewModal.classList.add('hidden');
+            quickViewModal.classList.remove('flex');
+        }
+
+        quickViewModal.addEventListener('click', (e) => {
+            if (e.target === quickViewModal) {
+                closeQuickView();
+            }
+        });
+    </script>
 </body>
 </html>
